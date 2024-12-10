@@ -1,0 +1,98 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:{
+    typeName: 'Book',
+    typeNamePlural: 'Borrowed Book',
+    title:{ value: 'BorrowedBookId'  }
+}
+annotate entity ZPDP_C_BORROWRED with
+{
+
+  @UI.facet: [
+                {
+                    purpose: #HEADER,
+                    type: #DATAPOINT_REFERENCE,
+                    label: 'Status',
+                    position: 10,
+                    targetQualifier: 'status'
+                    
+                 },
+                 {
+                     purpose: #STANDARD,
+                     type: #COLLECTION,
+                     position: 10,
+                     id: 'super',
+                     label: 'Additional Details'
+                 },
+                 {
+                   purpose: #STANDARD,
+                   type: #IDENTIFICATION_REFERENCE,
+                   label: 'More Information' ,
+                   position: 10,
+                   parentId: 'super'
+                },
+                {
+                    purpose: #STANDARD,
+                    type: #FIELDGROUP_REFERENCE,
+                    label: 'User Info',
+                    position: 20,
+                    parentId: 'super',
+                    targetQualifier: 'user'
+               }
+//               {
+//                    purpose: #STANDARD,
+//                    type: #FIELDGROUP_REFERENCE,
+//                    label: 'Book Info',
+//                    position: 30,
+//                    parentId: 'super',
+//                    targetQualifier: 'book'
+//               }
+              ]
+
+  @UI.lineItem: [{ position: 10, label: 'Borrow ID' }]
+  @UI.identification: [{ position: 10, label: 'Borrow ID' },
+  { type: #FOR_ACTION , dataAction: 'ReturnBook' , label: 'Return Book'},
+  { type: #FOR_ACTION , dataAction: 'Lost' , label: 'Lost' }
+  ]
+  BorrowedBookId;
+
+  @UI.identification: [{ position: 11, label: 'BookId' }]
+  BookId;
+//  @UI.fieldGroup: [{ qualifier: 'book', label: 'Book Name', position: 10 }]
+//  Title;
+  @UI.lineItem: [{ position: 11, label: 'User' }]
+  @UI.fieldGroup: [{ qualifier: 'user', label: 'User Name', position: 40 }]
+  UserId;
+  @UI.fieldGroup: [{ qualifier: 'user', label: 'Membership', position: 50 }]
+  UserMembership;
+  //  UserName;
+  @UI.lineItem: [{ position: 20, label: 'Borrow Date' }]
+  @UI.identification: [{ position: 30, label: 'Borrow Date' }]
+  BorrowDate;
+  @UI.lineItem: [{ position: 30, label: 'Expected Return Date' }]
+  @UI.identification: [{ position: 40, label: 'Expected Return Date' }]
+  ReturnDate;
+  @UI.lineItem: [{ position: 40, label: 'Quantity' }]
+  @UI.identification: [{ position: 20, label: 'Borrowed Quantity' }]
+  Quantity;
+//  @UI.lineItem: [{ position: 50,  label: 'Status'}] //IsActiveEntity
+  @UI.identification: [{ position: 50, label: 'Status', hidden: #( hidden_flag ) }]
+  Status;
+  @UI.dataPoint: { qualifier: 'status', title: 'Status' }
+  @UI.lineItem: [{ position: 60,  label: 'Current Status Name' }]
+  @UI.identification: [{ position: 60, label: 'Status' }]
+  current_status;
+  //  @UI.lineItem: [{ position: 50,  label: 'Status Name' }]
+  //  StatusName;
+  @UI.lineItem: [{ position: 70,  label: 'Actual Return Date' }]
+  @UI.identification: [{ position: 60, label: 'Actual Return Date' }]
+  ActualReturnDate;
+
+  //   CreatedBy;
+  //   CreatedOn;
+  //   ChangedBy;
+  //   ChangedOn;
+  //   /* Associations */
+  //   _Book;
+  //     _User;
+
+}

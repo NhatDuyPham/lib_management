@@ -1,0 +1,149 @@
+managed implementation in class zbp_pdp_i_book unique;
+strict ( 2 );
+with draft;
+
+define behavior for zpdp_i_book alias Book
+persistent table zdp_tb_book
+draft table zdp_tb_book_drf
+lock master
+total etag ChangedOn
+authorization master ( instance )
+etag master ChangedOn
+early numbering
+with additional save
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) BookId, PublisherAddr, AuthorCountry;
+  field ( mandatory ) Title, Quantity, Status, Genre, Isbn, AuthorId, PublisherId;
+
+  // Dynamic feature control
+  association _Borrowed { create ( features : instance ); with draft; }
+  association _Image { create ( features : instance ); with draft; }
+
+  // Check Validation
+  validation validateBook on save { create; update; field Status, Genre, PublisherId, AuthorId, Isbn, Title, Quantity, PublicationDate, Rating; }
+
+  //non-factory action
+  action DeactiveBook result [1] $self;
+  action ActiveBook result [1] $self;
+  // factory action
+  factory action copyBook [1];
+
+  // On Modify
+  determination get_publisher_data on modify { create; field PublisherId; }
+  determination get_author_data on modify { create; field AuthorId; }
+
+  side effects
+  {
+    field PublisherId affects field ( PublisherAddr );
+    field AuthorId affects field ( AuthorCountry );
+   }
+
+  // Mapping for creation
+  mapping for zdp_tb_book
+    {
+      BookId          = book_id;
+      Title           = title;
+      Isbn            = isbn;
+      Genre           = genre;
+      AuthorId        = author_id;
+      PublisherId     = publisher_id;
+      PublicationDate = publication_date;
+      status          = status;
+      ImageUrl        = image_url;
+      Quantity        = quantity;
+      Rating          = rating;
+      ChangedBy       = changed_by;
+      ChangedOn       = changed_on;
+      CreatedBy       = created_by;
+      CreatedOn       = created_on;
+    }
+  //
+  draft action Edit;
+  draft action Discard;
+  draft action Activate optimized;
+  draft action Resume;
+  draft determine action Prepare
+  {
+    validation validateBook;
+    validation Borrowred~validateBorrowed;
+  }
+}
+
+define behavior for zpdp_i_borrowred alias Borrowred
+persistent table zdp_tb_borrowed
+draft table zdp_tb_borrowe_d
+lock dependent by _Book
+authorization dependent by _Book
+etag master ChangedOn
+early numbering
+with additional save
+{
+  update ( features : instance );
+  delete;
+  field ( readonly ) BorrowedBookId, BookId, Status, ActualReturnDate, UserMembership;
+  //  field ( readonly ) Quantity;
+  //  field ( mandatory: ) Quantity;
+  field ( mandatory ) Quantity, BorrowDate, ReturnDate, UserId;
+  association _Book { with draft; }
+
+  // Check Validation
+  validation validateBorrowed on save { create;update;field Quantity, BorrowDate, ReturnDate, BorrowedBookId, UserId; }
+
+  //non-factory action
+  action ReturnBook result [1] $self;
+  action Lost result [1] $self;
+
+  determination calculateQuantity on save { create;update; }
+  determination get_user_data on modify { create; field UserId; }
+
+  side effects
+  {
+    field UserId affects field ( UserMembership );
+    }
+
+  mapping for zdp_tb_borrowed
+    {
+      BorrowedBookId   = borrowed_book_id;
+      BookId           = book_id;
+      UserId           = user_id;
+      BorrowDate       = borrow_date;
+      ReturnDate       = return_date;
+      Quantity         = quantity;
+      ActualReturnDate = actual_return_date;
+      Status           = borrowed_status;
+      ChangedBy        = changed_by;
+      ChangedOn        = changed_on;
+      CreatedBy        = created_by;
+      CreatedOn        = created_on;
+    }
+}
+
+define behavior for zpdp_i_image alias Image
+persistent table zdp_tb_image
+draft table zdp_tb_image_drf
+lock dependent by _Book
+authorization dependent by _Book
+etag master ChangedOn
+early numbering
+{
+  update;
+  delete;
+  field ( readonly ) ImageId, BookId;
+  association _Book { with draft; }
+
+  mapping for zdp_tb_image
+    {
+      ImageId    = image_id;
+      BookId     = book_id;
+      Attachment = attachment;
+      Mimetype   = mimetype;
+      Filename   = filename;
+      ChangedBy  = changed_by;
+      ChangedOn  = changed_on;
+      CreatedBy  = created_by;
+      CreatedOn  = created_on;
+    }
+}

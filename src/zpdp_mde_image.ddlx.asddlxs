@@ -1,0 +1,67 @@
+@Metadata.layer: #CUSTOMER
+//@UI: { headerInfo: {
+//    typeName: 'Image',
+//    typeNamePlural: 'Images',
+//    imageUrl: 'Attachment',
+//title: { type: #STANDARD, value: 'ImageId' },
+//         description: { type: #STANDARD, value: 'ImageId' } },
+//         presentationVariant: [{
+//         sortOrder: [{ by: 'ImageId', direction: #ASC }],
+//         visualizations: [{type: #AS_LINEITEM}] }] }
+
+@UI.headerInfo: {
+    typeName: 'Image',
+    typeNamePlural: 'Images',
+    imageUrl: 'Attachment'
+}
+
+annotate entity ZPDP_C_IMAGE with
+{
+
+  @UI.facet: [    {
+                 label: 'General Information',
+                 id: 'GeneralInfo',
+                 type: #COLLECTION,
+                 position: 10
+                 },
+                   {
+                      id:            'bookinfo',
+                      purpose:       #STANDARD,
+                      type:          #IDENTIFICATION_REFERENCE,
+                      label:         'Book Infomation',
+                      parentId: 'GeneralInfo',
+                      position:      10 },
+                   {
+                       id: 'Upload',
+                       purpose: #STANDARD,
+                       type: #FIELDGROUP_REFERENCE,
+                       parentId: 'GeneralInfo',
+                       label: 'Upload Image',
+                       position: 20,
+                       targetQualifier: 'Upload'
+                   } ]
+
+  @UI: { lineItem:       [ { position: 10, importance: #HIGH , label: 'ImageID'} ] ,
+         identification: [ { position: 10 , label: 'ImageID' } ] }
+  ImageId;
+//  @UI: { lineItem:       [ { position: 20, importance: #HIGH , label: 'BookID'} ] ,
+//         identification: [ { position: 20 , label: 'BookID' } ] }
+//  //  BookId;
+  @UI: { lineItem:       [ { position: 20, importance: #HIGH , label: 'Book'} ] ,
+         identification: [ { position: 20 , label: 'Book' } ] }
+  Title;
+  @UI: { lineItem:  [ { position: 30, importance: #HIGH , label: 'Attachment'} ] ,
+         fieldGroup: [ { position: 50, qualifier: 'Upload' , label: 'Attachment'} ]}
+  Attachment;
+  @UI.hidden: true
+  Mimetype;
+  @UI.hidden: true
+  Filename;
+  //   CreatedBy;
+  //   CreatedOn;
+  //   ChangedBy;
+  //   ChangedOn;
+  //   /* Associations */
+  //   _Book;
+
+}

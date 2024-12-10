@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service definition - User'
+define service ZPBP_SD_USER {
+  expose ZPDP_C_USER      as User;
+  expose ZPDP_C_BORROWRED as Borrowed;
+  expose ZPDP_C_BOOK      as Book;
+}

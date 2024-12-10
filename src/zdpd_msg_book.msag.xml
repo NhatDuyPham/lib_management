@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Message Class</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>User &amp;1 is not exist.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Status &amp;1 is not exist.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Genre &amp;1 is not exist.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Quantity must be greater than 0.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>isbn &amp;1 is duplicated.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Publisher &amp;1 is not exist.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Author &amp;1 is not exist.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Borrow Date &amp;1 must not be after Return Date &amp;2 .</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>Borrow Date &amp;1 must be on or after system date.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Borrow Date is null</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Return Date is null</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>Status is null</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>013</MSGNR>
+     <TEXT>Genre is null</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>014</MSGNR>
+     <TEXT>Title is null</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>015</MSGNR>
+     <TEXT>IBSN is null</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>016</MSGNR>
+     <TEXT>Publisher is null</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>017</MSGNR>
+     <TEXT>Author is null</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>018</MSGNR>
+     <TEXT>Publish Date &amp;1 must be on or before system date.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>019</MSGNR>
+     <TEXT>User is null</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>020</MSGNR>
+     <TEXT>The number of books borrowed exceeds the remaining ( Over : $1  )</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDPD_MSG_BOOK</ARBGB>
+     <MSGNR>021</MSGNR>
+     <TEXT>Rating must be between 1 and 5</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

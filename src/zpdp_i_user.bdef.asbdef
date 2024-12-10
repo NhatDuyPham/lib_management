@@ -1,0 +1,36 @@
+managed implementation in class zbp_pdp_i_user unique;
+strict ( 2 );
+with draft;
+
+define behavior for zpdp_i_user alias User
+persistent table zdp_tb_user
+draft table zdp_tb_user_drf
+lock master
+total etag ChangedOn
+authorization master ( instance )
+etag master ChangedOn
+early numbering
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) UserId;
+  field ( mandatory ) Name;
+
+  mapping for zdp_tb_user
+    {
+      UserId           = user_id;
+      Name             = name;
+      MembershipNumber = membership_number;
+      CreatedOn        = created_on;
+      CreatedBy        = created_by;
+      ChangedOn        = changed_on;
+      ChangedBy        = changed_by;
+    }
+
+  draft action Edit;
+  draft action Discard;
+  draft action Activate optimized;
+  draft action Resume;
+  draft determine action Prepare;
+}

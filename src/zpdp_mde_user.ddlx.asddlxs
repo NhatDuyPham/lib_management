@@ -1,0 +1,54 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:{
+    typeName: 'User',
+    typeNamePlural: 'User',
+    title:{ value: 'UserId'  }
+}
+annotate entity ZPDP_C_USER with
+{
+
+  @UI.facet: [
+                   {
+                      purpose: #STANDARD,
+                      type: #COLLECTION,
+                      position: 10,
+                      id: 'super',
+                      label: 'User Infomation'
+                   },
+                   {
+                     purpose: #STANDARD,
+                     type: #IDENTIFICATION_REFERENCE,
+                     label: 'Details' ,
+                     position: 10,
+                     parentId: 'super'
+                  },
+                  {
+                    purpose: #STANDARD,
+                    type: #LINEITEM_REFERENCE,
+                    label: 'Borrowed',
+                    position: 20,
+                    targetElement: '_Borrowed'
+               }
+              ]
+
+  @UI.lineItem: [{ position: 10, label: 'User ID' }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.identification: [{ position: 10, label: 'User ID' }]
+  UserId;
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.identification: [{ position: 20, label: 'User Name' }]
+  Name;
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.identification: [{ position: 30, label: 'Membership' }]
+  MembershipNumber;
+
+  //    CreatedBy;
+  //    CreatedOn;
+  //    ChangedBy;
+  //    ChangedOn;
+  //    /* Associations */
+  //    _Borrowed;;
+
+}

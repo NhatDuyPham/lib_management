@@ -1,0 +1,41 @@
+projection;
+strict ( 2 );
+use draft;
+use side effects;
+
+define behavior for ZPDP_C_BOOK alias Book
+{
+  use create;
+  use update;
+  use delete;
+  use action DeactiveBook;
+  use action ActiveBook;
+  use action copyBook;
+
+  use association _Borrowed { create; with draft; }
+  use association _Image { create; with draft; }
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+  use action Resume;
+}
+
+define behavior for ZPDP_C_BORROWRED alias Borrowred
+{
+  use update;
+  use delete;
+  use action ReturnBook;
+  use action Lost;
+
+  use association _Book { with draft; }
+}
+
+define behavior for ZPDP_C_IMAGE alias Image
+{
+  use update;
+  use delete;
+
+  use association _Book { with draft; }
+}

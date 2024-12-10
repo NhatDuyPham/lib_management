@@ -1,0 +1,11 @@
+@EndUserText.label: 'V4 -Book'
+define service ZPBP_SD_BOOK {
+  expose ZPDP_C_BOOK      as Book;
+  expose ZPDP_C_AUTHOR    as Author;
+  expose ZPDP_C_BORROWRED as Borrowed;
+  expose ZPDP_C_USER      as User;
+  expose ZPDP_C_IMAGE     as Image;
+  expose zpdp_i_publisher as Publisher;
+  expose zpdp_Status_vh   as Status;
+  expose zpdp_genre_vh    as Genre;
+}

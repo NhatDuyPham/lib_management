@@ -1,0 +1,190 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:{
+    typeName: 'Book',
+    typeNamePlural: 'Books',
+    title:{ value: 'BookId'  },
+    typeImageUrl: 'sap-icon://sales-order',
+    imageUrl: 'ImageUrl',
+    description:{ value: 'Title' }
+}
+
+//
+//@UI.headerInfo: { typeName: 'Librarys',
+//                  typeNamePlural: 'Libraries',
+//                  title: { type: #STANDARD, value: 'BookId' },
+//                  typeImageUrl: 'sap-icon://sales-order',
+//                  imageUrl: 'ImageUrl',
+//                  description: { type: #STANDARD, label: 'Libraries', value: 'Title' } }
+//
+//@UI.selectionVariant: [
+//  {
+//    text: 'Available',
+//    qualifier: 'Available'
+//  },
+//  {
+//    text: 'Not Available',
+//    qualifier: 'NotAvailable'
+//  }
+//]
+
+annotate entity ZPDP_C_BOOK with
+{
+
+  @UI.facet: [  {
+                    id: 'HeaderIno',
+                    purpose: #HEADER,
+                    type: #DATAPOINT_REFERENCE,
+  //                    label: 'Rate Info',
+                    position: 10,
+                    targetQualifier: 'Rate'
+
+                 },
+  //                 {
+  //                    purpose: #HEADER,
+  //                    type: #DATAPOINT_REFERENCE,
+  //                    label: 'Quantity',
+  //                    position: 20,
+  //                    targetQualifier: 'quan'
+  //
+  //                 },
+                 {
+                   purpose: #STANDARD,
+                   type: #COLLECTION,
+                   position: 10,
+                   id: 'super',
+                   label: 'Additional Details'
+               },
+  //               {
+  //                   purpose: #STANDARD,
+  //                   type: #IDENTIFICATION_REFERENCE,
+  //                   label: 'More Information' ,
+  //                   position: 10,
+  //                   parentId: 'super'
+  //               },
+               {
+                    purpose: #STANDARD,
+                    type: #FIELDGROUP_REFERENCE,
+                    label: 'More Information',
+                    position: 10,
+                    parentId: 'super',
+                    targetQualifier: 'info'
+               },
+                {
+                    purpose: #STANDARD,
+                    type: #FIELDGROUP_REFERENCE,
+                    label: 'Publish',
+                    position: 20,
+                    parentId: 'super',
+                    targetQualifier: 'pub'
+               },
+  //               {
+  //                    purpose: #STANDARD,
+  //                    type: #FIELDGROUP_REFERENCE,
+  //                    label: 'Dates',
+  //                    position: 30,
+  //                    parentId: 'super',
+  //                    targetQualifier: 'admin'
+  //               },
+               {
+                    purpose: #STANDARD,
+                    type: #FIELDGROUP_REFERENCE,
+                    label: 'Author',
+                    position: 30,
+                    parentId: 'super',
+                    targetQualifier: 'auth'
+               },
+               {
+                    purpose: #STANDARD,
+                    type: #LINEITEM_REFERENCE,
+                    label: 'Image',
+                    position: 20,
+                    targetElement: '_Image'
+               },
+               {
+                    purpose: #STANDARD,
+                    type: #LINEITEM_REFERENCE,
+                    label: 'Borrowed',
+                    position: 30,
+                    targetElement: '_Borrowed'
+               }
+                 ]
+
+  @UI.selectionField: [{ position: 10 }]
+  @UI.lineItem: [{ position: 10 },
+  { type: #FOR_ACTION , dataAction: 'DeactiveBook' , label: 'Deactive' },
+  { type: #FOR_ACTION , dataAction: 'ActiveBook' , label: 'Active' },
+  { type: #FOR_ACTION , dataAction: 'copyBook' , label: 'Copy Book' }
+  ]
+  @UI.fieldGroup: [{ qualifier: 'info', label: 'BookID', position: 01 }]
+  BookId;
+  @UI.selectionField: [{ position: 20 }]
+  @UI.lineItem: [{ position: 20 }]
+  @UI.fieldGroup: [{ qualifier: 'info', label: 'Title', position: 02 }]
+  Title;
+  @UI.selectionField: [{ position: 30 }]
+  @UI.lineItem: [{ position: 30 }]
+  @UI.fieldGroup: [{ qualifier: 'info', label: 'Isbn', position: 50 }]
+  Isbn;
+  //  @UI.selectionField: [{ position: 40 }]
+  @UI.lineItem: [{ position: 40 }]
+  @UI.fieldGroup: [{ qualifier: 'info', label: 'Genre', position: 40 }]
+  Genre;
+  @UI.selectionField: [{ position: 50 }]
+  @UI.lineItem: [{ position: 50 }]
+  @UI.fieldGroup: [{ qualifier: 'auth', label: 'Author', position: 10 }]
+  AuthorId;
+  @UI.fieldGroup: [{ qualifier: 'auth', label: 'Author Country', position: 20 }]
+  AuthorCountry;
+  @UI.lineItem: [{ position: 60 }]
+  @UI.fieldGroup: [{ qualifier: 'pub', label: 'Published By', position: 10 }]
+  PublisherId;
+  @UI.fieldGroup: [{ qualifier: 'pub', label: 'Published On', position: 20 }]
+  PublicationDate;
+  @UI.fieldGroup: [{ qualifier: 'pub', label: 'Published At', position: 30 }]
+  PublisherAddr;
+  @UI.selectionField: [{ position: 70 }]
+  @UI.lineItem: [{ position: 70, criticality: 'Criticality',
+                   importance: #HIGH }]
+  @UI.fieldGroup: [{ qualifier: 'info', label: 'Status', position: 20 }]
+  Status;
+  //  ImageUrl;
+  @UI.dataPoint: { //qualifier: 'Rate',
+                   //title: 'Rate',
+                   visualization: #RATING,
+                   targetValue: 5
+                    }
+  @UI.fieldGroup: [{ qualifier: 'info', label: 'Rating', position: 80 ,type: #AS_DATAPOINT }]
+  @UI.lineItem: [{ position: 90,label: 'Rating', type: #AS_DATAPOINT}]
+  Rating;
+//  @UI.lineItem: [{ position: 80 }]
+  @UI.fieldGroup: [{ qualifier: 'info', label: 'Quanity', position: 10 }]
+  //  @UI.dataPoint: { qualifier: 'quan',
+  //                   title: 'Available Quantity',
+  //                   visualization: #DONUT,
+  //                   targetValue: 100 }
+  Quantity;
+
+  @UI:{ fieldGroup: [{ qualifier: 'info', label: 'Url', position: 70, hidden: #( IsActiveEntity ) }] }
+  ImageUrl;
+  
+  @UI.lineItem: [{ position: 11 ,label: 'Image'}]
+  ImageUrl_list;
+
+
+  //  @UI.fieldGroup: [{ qualifier: 'admin', label: 'Created By', position: 10 }]
+  //  CreatedBy;
+  //  @UI.fieldGroup: [{ qualifier: 'admin', label: 'Created On', position: 20 }]
+  //  CreatedOn;
+  //  @UI.fieldGroup: [{ qualifier: 'admin', label: 'Changed By', position: 30 }]
+  //  ChangedBy;
+  //  @UI.fieldGroup: [{ qualifier: 'admin', label: 'Changed On', position: 40 }]
+  //  ChangedOn;
+  //  /* Associations */
+  //  _Author;
+  //  _Borrowed;
+  //  _Genre;
+  //  _Image;
+  //  _Publisher;
+  //  _Status;
+
+}
